@@ -1,23 +1,24 @@
 <html>
 <body>
 <script>
-	function performCommand(event) {
-		console.log("Event: " + event.command);
-		if (event.command === "automute") {
-			var tab = safari.application.activeBrowserWindow.openTab("foreground");
-			tab.url = safari.extension.baseURI + "setting.html";
-		}
-	}
+	// function performCommand(event) {
+	// 	console.log("Event: " + event.command);
+	// 	if (event.command === "automute") {
+	// 		var tab = safari.application.activeBrowserWindow.openTab("foreground");
+	// 		tab.url = safari.extension.baseURI + "setting.html";
+	// 	}
+	// }
 
 	function performMessage(event) {
 		if (event.name === "fetch") {
 			event.target.page.dispatchMessage("mutekeyword", safari.extension.settings.mutekeyword);
-		} else if (event.name === "update") {
-			safari.extension.settings.mutekeyword = event.message;
+		// } else if (event.name === "update") {
+		// 	console.log('update key: ' + event.message);
+		// 	safari.extension.settings.mutekeyword = event.message;
 		}
 	}
 
-	safari.application.addEventListener("command", performCommand, false);
+	//safari.application.addEventListener("command", performCommand, false);
 	safari.application.addEventListener("message", performMessage, false);
 </script>
 </body>

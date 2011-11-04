@@ -5,7 +5,7 @@ function updateSetting() {
 		setting = setting + "," + list.options[i].text;
 	}
 	if (setting.length > 0) setting = setting.substring(1, setting.length);
-	safari.self.tab.dispatchMessage("update", setting);
+	safari.extension.settings.mutekeyword = setting;
 }
 
 function onAddClick() {
@@ -29,16 +29,29 @@ function onDelClick() {
 	updateSetting();
 }
 
-function performMessage(event) {
-	if (event.name === "mutekeyword") {
-		var arr = event.message.split(",");
-		var list = document.getElementById("keywords");
-		for (var i=0; i<arr.length; ++i) {
-			if (arr[i].length > 0) {
-				var option = document.createElement("option");
-				option.text = arr[i];
-				list.add(option, null);
-			}
+// function performMessage(event) {
+// 	if (event.name === "mutekeyword") {
+// 		var arr = event.message.split(",");
+// 		var list = document.getElementById("keywords");
+// 		for (var i=0; i<arr.length; ++i) {
+// 			if (arr[i].length > 0) {
+// 				var option = document.createElement("option");
+// 				option.text = arr[i];
+// 				list.add(option, null);
+// 			}
+// 		}
+// 	}
+// }
+
+function fetchKeywords() {
+	var keywords = safari.extension.settings.mutekeyword;
+	var arr = keywords.split(",");
+	var list = document.getElementById("keywords");
+	for (var i=0; i<arr.length; ++i) {
+		if (arr[i].length > 0) {
+			var option = document.createElement("option");
+			option.text = arr[i];
+			list.add(option, null);
 		}
 	}
 }
