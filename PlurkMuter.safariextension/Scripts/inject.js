@@ -3,7 +3,7 @@ var blockList = "var outSideBlockList = [";
 function loop() {
 	var blockScript = document.createElement('script');
 	blockScript.type = 'text/javascript';
-	blockScript.text = blockList;
+	blockScript.text = 'window.gmgetsetting=\'' + window.gmgetsetting + '\';';
 	document.body.appendChild(blockScript);
 
 	var script = document.createElement('script');
@@ -18,18 +18,23 @@ function performMessage(event) {
 	if (event.name == "mutekeyword") {
 		if (event.message.length == 0) return;
 		
-		var arr = event.message.split(",");
-		for (var i=0; i<arr.length; ++i) {
-			if (arr[i].length > 0) {
-				blockList = blockList + "'" + arr[i] + "',"
-			}
-		}
-		if (blockList.charAt(blockList.length-1) === ",") blockList = blockList.substring(0, blockList.length-1);
-		blockList = blockList + "];";
-		console.log(blockList);
-
+		window.gmgetsetting = event.message;
+		console.log('mute: ' + window.gmgetsetting);
+		
 		window.setTimeout(loop, 2000);
 	}
+}
+
+function dataMonitor() {
+	var v = document.getElementById('proxy_for_data');
+	if (v) {
+		if (v.innerText && v.innerText.length > 0) {
+			var text = v.innerText;
+			v.innerText = '';
+			safari.self.tab.dispatchMessage('update', text);
+		}
+	}
+	window.setTimeout(dataMonitor, 1000);
 }
 
 if (window.top === window) {
@@ -37,4 +42,11 @@ if (window.top === window) {
 
 	safari.self.addEventListener("message", performMessage, false);
 	safari.self.tab.dispatchMessage("fetch", 1);
+
+	var span = document.createElement('span');
+	span.id = 'proxy_for_data';
+	span.style.display = 'none';
+	document.body.appendChild(span);
+
+	window.setTimeout(dataMonitor, 1000);
 }

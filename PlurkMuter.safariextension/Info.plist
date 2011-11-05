@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>Skyer Tai</string>
 	<key>Builder Version</key>
-	<string>7534.51.22</string>
+	<string>7534.52.7</string>
 	<key>CFBundleDisplayName</key>
 	<string>PlurkMuter</string>
 	<key>CFBundleIdentifier</key>
@@ -13,47 +13,13 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.5.5</string>
+	<string>0.9.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
 		<string>global.html</string>
-		<key>Popovers</key>
-		<array>
-			<dict>
-				<key>Filename</key>
-				<string>setting.html</string>
-				<key>Height</key>
-				<real>300</real>
-				<key>Identifier</key>
-				<string>mute</string>
-				<key>Width</key>
-				<real>400</real>
-			</dict>
-		</array>
-		<key>Toolbar Items</key>
-		<array>
-			<dict>
-				<key>Command</key>
-				<string></string>
-				<key>Identifier</key>
-				<string>automute</string>
-				<key>Image</key>
-				<string>Images/MutePlurk.png</string>
-				<key>Include By Default</key>
-				<true/>
-				<key>Label</key>
-				<string>automute</string>
-				<key>Menu</key>
-				<string>menu</string>
-				<key>Popover</key>
-				<string>mute</string>
-				<key>Tool Tip</key>
-				<string>Auto mute Plurk</string>
-			</dict>
-		</array>
 	</dict>
 	<key>Content</key>
 	<dict>

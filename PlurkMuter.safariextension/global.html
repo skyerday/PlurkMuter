@@ -12,9 +12,9 @@
 	function performMessage(event) {
 		if (event.name === "fetch") {
 			event.target.page.dispatchMessage("mutekeyword", safari.extension.settings.mutekeyword);
-		// } else if (event.name === "update") {
-		// 	console.log('update key: ' + event.message);
-		// 	safari.extension.settings.mutekeyword = event.message;
+		} else if (event.name === "update") {
+		 	console.log('update key: ' + event.message);
+		 	safari.extension.settings.mutekeyword = event.message;
 		}
 	}
 
